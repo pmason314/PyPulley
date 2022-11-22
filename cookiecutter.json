@@ -1,0 +1,14 @@
+{
+    "author": "Peter Mason",
+    "email": "pm3.141@gmail.com",
+    "github_username": "pmason314",
+    "project_name": "Modern Python Package",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_version": "0.1.0",
+    "python_version": "latest", 
+    "create_git_repo": "y",
+    "use_sphinx_documentation": "n",
+    "add_pypi_deployment": "n",
+    "license":  ["MIT License", "BSD License", "Apache Software License 2.0", "GNU General Public License v3", "Not Open Source"]
+
+}
