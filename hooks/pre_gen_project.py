@@ -20,7 +20,6 @@ def validate_project_slug():
             f"""ERROR: The project slug {module_name} is not a valid Python module name.
               Please use _ instead of -"""
         )
-
         # Cancel project creation
         sys.exit(1)
 

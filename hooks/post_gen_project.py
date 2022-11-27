@@ -29,11 +29,21 @@ def install_python_and_deps():
     subprocess.run(["pip", "install", "--upgrade", "pip"])
     subprocess.run(["pip", "install", "poetry"])
     subprocess.run(["poetry", "install"])
-    subprocess.run(["git", "init"])
-    subprocess.run(["pre-commit", "install"])
+
+    if "{{ cookiecutter.create_git_repo }}" == "y":
+        subprocess.run(["git", "init"])
+        subprocess.run(["poetry", "run", "pre-commit", "install"])
+
+
+def create_sphinx_docs():
+    """Create initial Sphinx documentation setup using the Sphinx api-doc extension."""
+    pass
 
 
 if __name__ == "__main__":
     if "{{ cookiecutter.license }}" == "Not Open Source":
         os.remove(os.path.join(PROJECT_DIRECTORY, "LICENSE"))
     install_python_and_deps()
+
+    if "{{ cookiecutter.create_sphinx_docs }}" == "y":
+        create_sphinx_docs()
