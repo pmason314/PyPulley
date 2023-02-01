@@ -6,7 +6,6 @@ After successfully creating the cookiecutter and validating it with the pre-gene
 """
 
 import os
-import pathlib
 import re
 import shutil
 import subprocess
@@ -18,10 +17,10 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 def remove_unused_resources():
     """Delete unused files and directories related to declined template configuration options."""
     if "{{ cookiecutter.license }}" == "Not Open Source":
-        pathlib.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
+        Path.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
 
     if "{{ cookiecutter.create_git_repo }}" == "n":
-        pathlib.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
+        Path.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
 
     if "{{ cookiecutter.create_sphinx_docs }}" == "n":
         shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")

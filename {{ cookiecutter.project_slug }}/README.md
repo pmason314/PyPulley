@@ -1,22 +1,24 @@
 # {{cookiecutter.project_name}}
 
+## Using this package template (delete me)
+Run sh ./FIRST_TIME_SETUP.sh
+Make initial commit
+Edit this README
+
 ## What is it?
 Fill in an introduction and description of your package here!
-
-## Using the tools in this package template (delete me)
 
 ### Virtual environment and package installation
 poetry
 poetry-dotenv-plugin
 .env file
 ### Linting
-flake8
-flake8-docstrings
+ruff
 
 ### Formatting
 black
 blacken-docs
-isort
+
 
 ### Testing
 pytest
