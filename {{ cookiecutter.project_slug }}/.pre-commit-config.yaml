@@ -19,17 +19,22 @@ repos:
     rev: 22.10.0
     hooks:
       - id: black
-  - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
+  - repo: https://github.com/asottile/blacken-docs
+    rev: v1.12.1
     hooks:
-      - id: flake8
-        additional_dependencies:
-          - flake8-docstrings
-          - flake8-bugbear
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
+      - id: blacken-docs
+        additional_dependencies: [black==22.10.0]
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.238
     hooks:
-      - id: isort
+      - id: ruff
+      - args:
+          [
+            "select = ['E', 'F', 'C', 'N', 'D', 'UP', 'S', 'B', 'A', 'C4', 'PT', 'SIM', 'ARG', 'PTH', 'PD']",
+            "unfixable = ['B']",
+            "ignore = ['D203', 'D212']",
+            "line-length = 120",
+          ]
   - repo: github.com/PyCQA/bandit
     rev: 1.7.4
     hooks:
@@ -43,7 +48,3 @@ repos:
     hooks:
       - id: codespell
         types_or: [python, rst, markdown]
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.2.0
-    hooks:
-      - id: pyupgrade

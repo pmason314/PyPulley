@@ -1,6 +1,12 @@
 # PyPackage Template
 
-## What is it?
+## What Is It?
+
+
+## Why Use It?
+
+
+## Installation
 
 
 ## License
