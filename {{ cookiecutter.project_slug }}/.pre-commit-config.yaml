@@ -28,17 +28,14 @@ repos:
     rev: v0.0.238
     hooks:
       - id: ruff
-      - args:
+        args:
           [
             "select = ['E', 'F', 'C', 'N', 'D', 'UP', 'S', 'B', 'A', 'C4', 'PT', 'SIM', 'ARG', 'PTH', 'PD']",
             "unfixable = ['B']",
             "ignore = ['D203', 'D212']",
+            "per-file-ignores = {'tests/*': 'S101'}",
             "line-length = 120",
           ]
-  - repo: github.com/PyCQA/bandit
-    rev: 1.7.4
-    hooks:
-      - id: bandit
   - repo: https://github.com/MarcoGorelli/absolufy-imports
     rev: v0.3.1
     hooks:

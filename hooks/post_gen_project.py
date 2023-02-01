@@ -10,6 +10,7 @@ import pathlib
 import re
 import shutil
 import subprocess
+from pathlib import Path
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
@@ -17,13 +18,13 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 def remove_unused_resources():
     """Delete unused files and directories related to declined template configuration options."""
     if "{{ cookiecutter.license }}" == "Not Open Source":
-        pathlib.unlink(PROJECT_DIRECTORY / "LICENSE")
+        pathlib.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
 
     if "{{ cookiecutter.create_git_repo }}" == "n":
-        pathlib.unlink(PROJECT_DIRECTORY / ".pre-commit-config.yaml")
+        pathlib.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
 
     if "{{ cookiecutter.create_sphinx_docs }}" == "n":
-        shutil.rmtree(PROJECT_DIRECTORY / "docs")
+        shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")
 
 
 def install_python():
@@ -48,7 +49,7 @@ def install_python():
     subprocess.run(["pyenv", "local", python_version])
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
-    with pathlib.Path("pyproject.toml", "a").open() as config_file:
+    with Path("pyproject.toml").open("a") as config_file:
         config_file.write("\n\n[tool.poetry.dependencies]\n")
         config_file.write(f'python = "{python_version}"\n')
 
@@ -56,25 +57,6 @@ def install_python():
         subprocess.run(["git", "init"])
 
 
-def install_python_dependencies():
-    """Install the starting Python packages and other standard development tools."""
-
-    # Everything after here runs on the wrong version of Python - need to spawn a new shell?  Or at least run python
-    #  again.
-    # pyenv gets set correctly, but the old/initial version is still running
-    # https://pythonspot.com/python-subprocess/
-    # https://stackoverflow.com/questions/29523246/python-subprocess-is-running-a-different-version-of-python
-
-    # subprocess.run(["pip", "install", "--upgrade", "pip"])
-    # subprocess.run(["pip", "install", "poetry"])
-    # subprocess.run(["poetry", "self", "add", "poetry-dotenv-plugin"])
-    # subprocess.run(["poetry", "install"])
-
-    # if "{{ cookiecutter.create_git_repo }}" == "y": # Change to look for .git directory instead?
-    #     subprocess.run(["poetry", "run", "pre-commit", "install"])
-
-
 if __name__ == "__main__":
     remove_unused_resources()
     install_python()
-    install_python_dependencies()
