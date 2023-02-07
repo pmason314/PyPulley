@@ -65,6 +65,9 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 
+# Ruff stuff:
+.ruff_cache
+
 # Scrapy stuff:
 .scrapy
 
@@ -151,3 +154,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Scratch files for testing
+/scratch.*

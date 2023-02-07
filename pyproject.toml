@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pypackage-template"
+name = "pypulley"
 version = "0.1.0"
 description = ""
 authors = ["Peter Mason <pm3.141@gmail.com>"]
