@@ -60,11 +60,11 @@ Most of the time pyenv can be installed via either:
   curl https://pyenv.run | bash
   ```
 - **Homebrew (Mac OS X):**
-  `sh
-brew update
-brew install pyenv
-`
-  `See pyenv's [Suggested Build Environment](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) if you encounter any problems. Also note that pyenv on Windows (and therefore PyPulley) is only supported through [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
+  ```sh
+  brew update
+  brew install pyenv
+  ```
+  See pyenv's [Suggested Build Environment](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) if you encounter any problems. Also note that pyenv on Windows (and therefore PyPulley) is only supported through [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
 
 ### Installing PyPulley
 
