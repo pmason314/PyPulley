@@ -27,7 +27,13 @@ def remove_unused_resources():
 
 
 def install_python():
-    """Figure out and install the specified version of Python."""
+    """
+    Figure out and install the specified version of Python.
+
+    Returns
+    -------
+        int: specific Python version selected for the project
+    """
     python_version = "{{ cookiecutter.python_version }}"
     standard_version_regex = r"^3.[0-9]+.[0-9]+$"
 
@@ -44,7 +50,7 @@ def install_python():
         selected_versions = list(filter(lambda version: re.match(python_version, version), all_versions))
         python_version = selected_versions[-1]
 
-    subprocess.run(["pyenv", "install", python_version])
+    subprocess.run(["pyenv", "install", python_version, "-y"])
     subprocess.run(["pyenv", "local", python_version])
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
@@ -55,7 +61,19 @@ def install_python():
     if "{{ cookiecutter.create_git_repo }}" == "y":
         subprocess.run(["git", "init"])
 
+    return python_version
+
+
+def install_python_dependencies(python_version):
+    """Install all tools and frameworks with a specific version of Python."""
+    subprocess.run(
+        f"""PYENV_VERSION={python_version}; $(pyenv which python) -c """
+        """'import subprocess; subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])'""",
+        shell=True,
+    )
+
 
 if __name__ == "__main__":
     remove_unused_resources()
-    install_python()
+    project_python_version = install_python()
+    install_python_dependencies(project_python_version)

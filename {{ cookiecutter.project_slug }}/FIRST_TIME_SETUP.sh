@@ -1,7 +1,9 @@
-pip install --upgrade pip
-pip install poetry
-poetry env remove --all
-poetry self add poetry-dotenv-plugin
+pip install --upgrade pip >/dev/null
+pip install poetry >/dev/null
+poetry self update >/dev/null
+poetry config virtualenvs.prefer-active-python true >/dev/null
+poetry env remove --all >/dev/null
+poetry self add poetry-dotenv-plugin >/dev/null
 poetry install
 
 if [ -d ".git" ]; then
