@@ -1,8 +1,8 @@
 {
-    "author": "Peter Mason",
-    "email": "pm3.141@gmail.com",
-    "github_username": "pmason314",
-    "project_name": "Modern Python Package",
+    "author": "First Last",
+    "email": "email@address.com",
+    "github_username": "github_username",
+    "project_name": "My Python Package",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "project_version": "0.1.0",
     "python_version": "latest",

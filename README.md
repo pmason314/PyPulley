@@ -64,7 +64,8 @@ Most of the time pyenv can be installed via either:
   brew update
   brew install pyenv
   ```
-  See pyenv's [Suggested Build Environment](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) if you encounter any problems. Also note that pyenv on Windows (and therefore PyPulley) is only supported through [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
+
+See pyenv's [Suggested Build Environment](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) if you encounter any problems. Note that on Windows, pyenv (and therefore PyPulley) is only supported through [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
 
 ### Installing PyPulley
 
