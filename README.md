@@ -98,13 +98,34 @@ Now you're ready to go! Below are some selected options and commands from the de
   - [`poetry build`](https://python-poetry.org/docs/cli/#build) - Build the package wheel.
   - [`poetry publish --build`](https://python-poetry.org/docs/cli/#publish) - Build and [publish](https://python-poetry.org/docs/repositories/#publishable-repositories) the project to a remote repository or index.
   - [`poetry version`](https://python-poetry.org/docs/cli/#version) - Show the current project version or bump the version of the project in `pyproject.toml`.
-- Ruff:
-  - [`ruff check {directory}`](https://github.com/charliermarsh/ruff#command-line-interface) - Run Ruff on the given files or directories.
-  - TODO - Settings to set up to lint on save in VS Code
 - Black:
   - [`black {directory}`](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#usage) - Run Black on the given file or directory.
 - Pytest:
   - [`pytest {directory}`](https://docs.pytest.org/en/7.2.x/reference/reference.html#command-line-flags) - Run pytest on the given file or directory.
+- Ruff:
+
+  - [`ruff check {directory}`](https://github.com/charliermarsh/ruff#command-line-interface) - Run Ruff on the given files or directories.
+  - If using VS Code, add the [Ruff Extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) and enable or add the following in [Preferences: User Settings](https://code.visualstudio.com/docs/getstarted/settings) and [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) respectively:
+
+    - [Preferences: User Settings](https://code.visualstudio.com/docs/getstarted/settings):
+        <p align="left">
+            <img src="resources/Ruff Settings.png" alt="'Ruff: Fix All' enabled and 'Ruff: Import Strategy' fromEnvironment selected."/>
+        </p>
+    - [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+      ```json
+      {
+        ...,
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.python",
+            "editor.formatOnSave": true,
+            "editor.codeActionsOnSave": {
+                "source.fixAll": true,
+                "source.organizeImports": true
+            }
+        },
+        ...
+      }
+      ```
 
 ## License
 
