@@ -1,51 +1,27 @@
 # {{cookiecutter.project_name}}
 
-## Using this package template (delete me)
-
-Run sh ./FIRST_TIME_SETUP.sh
-Make initial commit
-Edit this README
-
 ## What is it?
 
 Fill in an introduction and a description of your package here!
 
-### Virtual environment and package installation
+## PyPulley Tools Reference (DELETE ME)
 
-poetry
-poetry-dotenv-plugin
-.env file
-
-### Linting
-
-ruff
-
-### Formatting
-
-black
-blacken-docs
-
-### Testing
-
-pytest
-pytest-cov
-pytest-mock
-
-### Version Control
-
-git
-pre-commit
-
-### Documentation
-
-sphinx
-sphinx-rtd-theme
-
-### Publishing
-
-poetry version
-poetry build
-poetry publish --build
+- Poetry:
+  - [`poetry add {package}`](https://python-poetry.org/docs/cli/#add) - Add a required package or dev dependency to `pyproject.toml` and install it.
+  - [`poetry shell`](https://python-poetry.org/docs/basic-usage#activating-the-virtual-environment) - Create a nested shell and activate the `poetry` virtual environment for the project.
+  - [`poetry install`](https://python-poetry.org/docs/cli/#install) - Install all dependencies from the project's `pyproject.toml`.
+  - [`poetry update`](https://python-poetry.org/docs/cli/#update) - Update all dependency versions where possible and update `poetry.lock` accordingly.
+  - [`poetry show`](https://python-poetry.org/docs/cli/#show) - List all available packages in the virtual environment.
+  - [`poetry build`](https://python-poetry.org/docs/cli/#build) - Build the package wheel.
+  - [`poetry publish --build`](https://python-poetry.org/docs/cli/#publish) - Build and [publish](https://python-poetry.org/docs/repositories/#publishable-repositories) the project to a remote repository or index.
+  - [`poetry version`](https://python-poetry.org/docs/cli/#version) - Show the current project version or bump the version of the project in `pyproject.toml`.
+- Ruff:
+  - [`ruff check {directory}`](https://github.com/charliermarsh/ruff#command-line-interface) - Run Ruff on the given files or directories.
+  - TODO - Settings to set up to lint on save in VS Code
+- Black:
+  - [`black {directory}`](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#usage) - Run Black on the given file or directory.
+- Pytest:
+  - [`pytest {directory}`](https://docs.pytest.org/en/7.2.x/reference/reference.html#command-line-flags) - Run pytest on the given file or directory.
 
 ## License
 
