@@ -50,7 +50,7 @@ def install_python():
         selected_versions = list(filter(lambda version: re.match(python_version, version), all_versions))
         python_version = selected_versions[-1]
 
-    subprocess.run(["pyenv", "install", python_version, "-y"])
+    subprocess.run(["pyenv", "install", python_version, "-s"])  # Skip installation if version already exists
     subprocess.run(["pyenv", "local", python_version])
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter

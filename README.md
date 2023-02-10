@@ -112,18 +112,15 @@ Now you're ready to go! Below are some selected options and commands from the de
             <img src="resources/Ruff Settings.png" alt="'Ruff: Fix All' enabled and 'Ruff: Import Strategy' fromEnvironment selected."/>
         </p>
     - [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+
       ```json
-      {
-        ...,
-        "[python]": {
-            "editor.defaultFormatter": "ms-python.python",
-            "editor.formatOnSave": true,
-            "editor.codeActionsOnSave": {
-                "source.fixAll": true,
-                "source.organizeImports": true
-            }
-        },
-        ...
+      "[python]": {
+          "editor.defaultFormatter": "ms-python.python",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+          "source.fixAll": true,
+          "source.organizeImports": true
+          }
       }
       ```
 
