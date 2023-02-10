@@ -4,7 +4,7 @@
 
 PyPulley is a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for quickly creating new Python packages or projects. By running a single shell command, you can have dependency management and Python version management in place, linting, formatting, and pre-commit hooks configured, and more.
 
-PyPulley bundles its set of tools and frameworks in an opinionated fashion based on ease of use, and performance, and general best practices. Many of these defaults can be changed as desired.
+PyPulley bundles its set of tools and frameworks in an opinionated fashion based on ease of use, performance, and general best practices. Many of these defaults can be changed as desired.
 
 ### TODO - Include screenshot of configuration options
 
@@ -20,8 +20,6 @@ PyPulley bundles its set of tools and frameworks in an opinionated fashion based
   - [Documentation](#documentation---sphinx)
   - [Publishing](#publishing---poetry)
 - [**Installation**](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Installing PyPulley](#installing-pypulley)
 - [**Usage**](#usage)
   - [Reference Guide](#reference-guide)
 - [**License**](#license)
@@ -49,9 +47,7 @@ PyPulley installs all of the following development tools, packages, and framewor
 
 ## Installation
 
-### Prerequisites
-
-The sole prerequisite for PyPulley is having [pyenv](https://github.com/pyenv/pyenv) installed for Python version management.
+The first prerequisite for PyPulley is having [pyenv](https://github.com/pyenv/pyenv) installed for Python version management.
 
 Most of the time pyenv can be installed via either:
 
@@ -67,12 +63,10 @@ Most of the time pyenv can be installed via either:
 
 See pyenv's [Suggested Build Environment](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) if you encounter any problems. Note that on Windows, pyenv (and therefore PyPulley) is only supported through [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
 
-### Installing PyPulley
-
-Install Pypulley from PyPI using pip:
+Next, install cookiecutter via pip:
 
 ```sh
-pip install pypulley
+pip install cookiecutter
 ```
 
 ## Usage
@@ -80,7 +74,7 @@ pip install pypulley
 Simply run the PyPulley cookiecutter and configure your package by selecting your desired options:
 
 ```sh
-cookiecutter pypulley
+cookiecutter gh:pmason314/pypulley
 ```
 
 ### TODO - Include terminal recording gif here
