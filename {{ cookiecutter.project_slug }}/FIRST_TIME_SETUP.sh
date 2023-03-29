@@ -4,7 +4,7 @@ poetry self update >/dev/null
 poetry config virtualenvs.prefer-active-python true >/dev/null
 poetry env remove --all >/dev/null
 poetry self add poetry-dotenv-plugin >/dev/null
-poetry install
+poetry install --no-root
 
 if [ -d ".git" ]; then
     poetry run pre-commit install

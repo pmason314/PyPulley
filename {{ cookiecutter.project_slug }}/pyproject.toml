@@ -56,6 +56,10 @@ line-length = 120
 "tests/*" = ["S101"]
 
 
+[tool.ruff.pydocstyle]
+convention = "google"
+
+
 [tool.pytest.ini_options]
 addopts = "--cov={{cookiecutter.project_slug}}"
 testpaths = ["tests"]

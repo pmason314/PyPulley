@@ -30,8 +30,7 @@ def install_python():
     """
     Figure out and install the specified version of Python.
 
-    Returns
-    -------
+    Returns:
         int: specific Python version selected for the project
     """
     python_version = "{{ cookiecutter.python_version }}"
