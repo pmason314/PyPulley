@@ -65,11 +65,10 @@ def install_python():
 
 def install_python_dependencies(python_version):
     """Install all tools and frameworks with a specific version of Python."""
-    subprocess.run(
-        f"""PYENV_VERSION={python_version}; $(pyenv which python) -c """
-        """'import subprocess; subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])'""",
-        shell=True,
-    )
+    # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
+    os.environ["PYENV_VERSION"] = python_version
+    subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])
+    del os.environ["PYENV_VERSION"]
 
 
 if __name__ == "__main__":
