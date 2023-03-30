@@ -1,15 +1,19 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
+Configuration file for the Sphinx documentation builder.
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+Run `sphinx-apidoc -f -o docs {{ cookiecutter.project_slug }}` to build the documentation.
 
-import os
+For the full list of built-in configuration values, see the documentation:
+https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+-- Project information -----------------------------------------------------
+https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+"""
+
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.join(os.getcwd(), "../{{ cookiecutter.project_slug }}"))
+sys.path.insert(0, str(Path(Path.cwd() / "../{{ cookiecutter.project_slug }}")))
 
 project = "{{ cookiecutter.project_name }}"
 copyright = "{% now 'local', '%Y' %}, {{ cookiecutter.author }}"
@@ -35,5 +39,3 @@ exclude_patterns = []
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
-
-# Run with `sphinx-apidoc -f -o docs {{ cookiecutter.project_slug }}`

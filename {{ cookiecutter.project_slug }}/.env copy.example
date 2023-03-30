@@ -1,6 +1,6 @@
 # Sample file for storing local environment variables.
 # Since the .env file never exists in a remote repository, create your .env file
-#  by copying this file and renaming the copy from ".env copy.example" to ".env".
+#  by copying this file and renaming the copy from ".env.example" to ".env".
 #
 # Any local environment variables defined in .env will be automatically loaded
 #  before any Poetry commands are run.

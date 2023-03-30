@@ -23,6 +23,14 @@ Fill in an introduction and a description of your package here!
 - Pytest:
   - [`pytest {directory}`](https://docs.pytest.org/en/7.2.x/reference/reference.html#command-line-flags) - Run pytest on the given file or directory.
 
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD license': 'License :: OSI Approved :: BSD License',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+} %}
+{%- if cookiecutter.license in license_classifiers %}
 ## License
 
 [{{cookiecutter.license}}](LICENSE)
+{%- endif %}
