@@ -6,10 +6,12 @@ PyPulley is a [cookiecutter template](https://github.com/cookiecutter/cookiecutt
 
 PyPulley bundles its set of tools and frameworks in an opinionated fashion based on ease of use, performance, and general best practices. Many of these defaults can be changed as desired.
         <p align="left">
-            <img src="resources/Cookiecutter Configuration.png" alt="Sample PyPulley configuration options."/>
+            <img src="resources/cookiecutter_configuration.png" alt="Sample PyPulley configuration options." />
         </p>
 
 ## Table of Contents
+
+TODO - Manually fix TOC headings
 
 - [PyPulley](#pypulley)
   - [What Is It?](#what-is-it)
@@ -17,7 +19,6 @@ PyPulley bundles its set of tools and frameworks in an opinionated fashion based
   - [Main Features](#main-features)
   - [Installation](#installation)
   - [Usage](#usage)
-    - [TODO - Include terminal recording gif here](#todo---include-terminal-recording-gif-here)
     - [Reference Guide](#reference-guide)
   - [License](#license)
 
@@ -74,7 +75,9 @@ Simply run the PyPulley cookiecutter and configure your package by selecting you
 cookiecutter gh:pmason314/pypulley
 ```
 
-### TODO - Include terminal recording gif here
+<p align="left">
+    <img src="resources/demo_recording.svg" alt="Sample end-to-end usage of the PyPulley template to create a new Python project."/>
+</p>
 
 Running the above command will create your Python package with a file structure resembling the following:
 ```
@@ -122,7 +125,7 @@ Now you're ready to go! Below are some selected options and commands from the de
 
     - [Preferences: User Settings](https://code.visualstudio.com/docs/getstarted/settings):
         <p align="left">
-            <img src="resources/Ruff Settings.png" alt="'Ruff: Fix All' enabled and 'Ruff: Import Strategy' fromEnvironment selected."/>
+            <img src="resources/ruff_settings.png" alt="'Ruff: Fix All' enabled and 'Ruff: Import Strategy' fromEnvironment selected."/>
         </p>
     - Add the following to [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
 
