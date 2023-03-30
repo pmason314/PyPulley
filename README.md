@@ -5,14 +5,14 @@
 PyPulley is a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for quickly creating new Python packages or projects. By running a single shell command, you can have dependency management and Python version management in place, linting, formatting, and pre-commit hooks configured, and more.
 
 PyPulley bundles its set of tools and frameworks in an opinionated fashion based on ease of use, performance, and general best practices. Many of these defaults can be changed as desired.
-
-### TODO - Include screenshot of configuration options
+        <p align="left">
+            <img src="resources/Cookiecutter Configuration.png" alt="Sample PyPulley configuration options."/>
+        </p>
 
 ## Table of Contents
 
 - [PyPulley](#pypulley)
   - [What Is It?](#what-is-it)
-    - [TODO - Include screenshot of configuration options](#todo---include-screenshot-of-configuration-options)
   - [Table of Contents](#table-of-contents)
   - [Main Features](#main-features)
   - [Installation](#installation)
@@ -30,7 +30,7 @@ PyPulley installs all of the following development tools, packages, and framewor
 - ### Dependency Management - [**Poetry**](https://python-poetry.org/)
   PyPulley prefers Poetry for dependency management in Python-only or Python-majority projects. Poetry's ability to easily create isolated virtual environments and track dependency requirements make it a fantastic choice for setting up new packages. Also included is **poetry-dotenv-plugin**, a small plugin for Poetry that makes local environment variables easily definable and accessible at runtime via a `.env` file.
 - ### Linting - [**Ruff**](https://github.com/charliermarsh/ruff)
-  Ruff is a relatively new Python linter with the same functionality of flake8, isort, pydocstyle, pyupgrade and other tools combined, all while running orders of magnitude faster than any of them. Ruff is highly configurable as well, making it a flexible choice for any Python project.
+  Ruff is a relatively new Python linter with the same functionality of flake8, isort, pydocstyle, pyupgrade and other tools combined, all while running orders of magnitude faster than any of them. Ruff is highly configurable as well, making it a flexible choice for any Python project.  The full list of possible linting rules is available [here](https://beta.ruff.rs/docs/rules/).
 - ### Formatting - [**Black**](https://black.readthedocs.io/en/stable/)
   The most popular and most uncompromising Python code formatter. PyPulley agrees with the core premise of Black - consistency across a code base allows everyone to focus on more important matters than which manually-formatted choice is prettier.
 - ### Unit Testing - [**pytest**](https://docs.pytest.org/en/latest/)
@@ -76,7 +76,7 @@ cookiecutter gh:pmason314/pypulley
 
 ### TODO - Include terminal recording gif here
 
-Running the above command will create your Python package with a file structure resembling the followwing:
+Running the above command will create your Python package with a file structure resembling the following:
 ```
 |── my_python_package ........... Source code folder
 |   |── main.py ................. Sample source code file
@@ -92,7 +92,7 @@ Running the above command will create your Python package with a file structure 
 |── README.md ................... Package overview with installation and usage instructions for developers
 |── LICENSE ..................... Open Source license file, if applicable
 |── pyproject.toml .............. Package configuration file, also used for dependency setting configuration
-|── poetry.lock ................. Lock file (list of dependencies and corresponding versions) for the Poetry dependency manager 
+|── poetry.lock ................. Lock file (list of dependencies and corresponding versions) for the Poetry dependency manager
 |── .pre-commit-config.yaml ..... Set of git pre-commit hooks
 |── .gitignore .................. List of files or file patterns that should not be version-controlled
 |── .python-version ............. Pyenv setting file for recognizing the minimum version of Python this package requires
@@ -117,7 +117,6 @@ Now you're ready to go! Below are some selected options and commands from the de
 - Pytest:
   - [`pytest {directory}`](https://docs.pytest.org/en/7.2.x/reference/reference.html#command-line-flags) - Run pytest on the given file or directory.
 - Ruff:
-
   - [`ruff check {directory}`](https://github.com/charliermarsh/ruff#command-line-interface) - Run Ruff on the given files or directories.
   - If using VS Code, add the [Ruff Extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) and enable or add the following in [Preferences: User Settings](https://code.visualstudio.com/docs/getstarted/settings) and [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) respectively:
 
@@ -125,7 +124,7 @@ Now you're ready to go! Below are some selected options and commands from the de
         <p align="left">
             <img src="resources/Ruff Settings.png" alt="'Ruff: Fix All' enabled and 'Ruff: Import Strategy' fromEnvironment selected."/>
         </p>
-    - [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+    - Add the following to [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
 
       ```json
       "[python]": {
