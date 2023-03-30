@@ -11,16 +11,19 @@ PyPulley bundles its set of tools and frameworks in an opinionated fashion based
 
 ## Table of Contents
 
-TODO - Manually fix TOC headings
-
-- [PyPulley](#pypulley)
-  - [What Is It?](#what-is-it)
-  - [Table of Contents](#table-of-contents)
-  - [Main Features](#main-features)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Reference Guide](#reference-guide)
-  - [License](#license)
+- [**Main Features**](#main-features)
+  - [Python Versioning](#python-versioning---pyenv)
+  - [Dependency Management](#dependency-management---poetry)
+  - [Linting](#linting---ruff)
+  - [Formatting](#formatting---black)
+  - [Unit Testing](#unit-testing---pytest)
+  - [Version Control](#version-control---git-and-pre-commit)
+  - [Documentation](#documentation---sphinx)
+  - [Publishing](#publishing---poetry)
+- [**Installation**](#installation)
+- [**Usage**](#usage)
+  - [Reference Guide](#reference-guide)
+- [**License**](#license)
 
 ## Main Features
 
@@ -104,7 +107,7 @@ Running the above command will create your Python package with a file structure 
 
 ### Reference Guide
 
-Now you're ready to go! Below are some selected options and commands from the default set of tools that may be useful.
+Now you're ready to go! Below are some selected commands and options from the default set of tools that may be useful.
 
 - Poetry:
   - [`poetry add {package}`](https://python-poetry.org/docs/cli/#add) - Add a required package or dev dependency to `pyproject.toml` and install it.
