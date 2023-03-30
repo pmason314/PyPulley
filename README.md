@@ -10,19 +10,16 @@ PyPulley bundles its set of tools and frameworks in an opinionated fashion based
 
 ## Table of Contents
 
-- [**Main Features**](#main-features)
-  - [Python Versioning](#python-versioning---pyenv)
-  - [Dependency Management](#dependency-management---poetry)
-  - [Linting](#linting---ruff)
-  - [Formatting](#formatting---black)
-  - [Unit Testing](#unit-testing---pytest)
-  - [Version Control](#version-control---git-and-pre-commit)
-  - [Documentation](#documentation---sphinx)
-  - [Publishing](#publishing---poetry)
-- [**Installation**](#installation)
-- [**Usage**](#usage)
-  - [Reference Guide](#reference-guide)
-- [**License**](#license)
+- [PyPulley](#pypulley)
+  - [What Is It?](#what-is-it)
+    - [TODO - Include screenshot of configuration options](#todo---include-screenshot-of-configuration-options)
+  - [Table of Contents](#table-of-contents)
+  - [Main Features](#main-features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [TODO - Include terminal recording gif here](#todo---include-terminal-recording-gif-here)
+    - [Reference Guide](#reference-guide)
+  - [License](#license)
 
 ## Main Features
 
@@ -78,6 +75,29 @@ cookiecutter gh:pmason314/pypulley
 ```
 
 ### TODO - Include terminal recording gif here
+
+Running the above command will create your Python package with a file structure resembling the followwing:
+```
+|── my_python_package ........... Source code folder
+|   |── main.py ................. Sample source code file
+|   └── __init__.py ............. Init file marking the package as a Python module
+|
+|── tests ....................... Unit test folder
+|   └── test_placeholder.py ..... Sample pytest unit test, preconfigured and runnable with the `pytest` command
+|
+|── docs ........................ (Optional) Sphinx documentation folder where all auto-generated docs are stored
+|   |── conf.py ................. (Optional) Sphinx configuration file
+|   └── index.rst ............... (Optional) Sphinx template for the main (home) documentation page
+|
+|── README.md ................... Package overview with installation and usage instructions for developers
+|── LICENSE ..................... Open Source license file, if applicable
+|── pyproject.toml .............. Package configuration file, also used for dependency setting configuration
+|── poetry.lock ................. Lock file (list of dependencies and corresponding versions) for the Poetry dependency manager 
+|── .pre-commit-config.yaml ..... Set of git pre-commit hooks
+|── .gitignore .................. List of files or file patterns that should not be version-controlled
+|── .python-version ............. Pyenv setting file for recognizing the minimum version of Python this package requires
+└── .env.example ................ Sample file for setting environment variables that get picked up by Poetry
+```
 
 ### Reference Guide
 
