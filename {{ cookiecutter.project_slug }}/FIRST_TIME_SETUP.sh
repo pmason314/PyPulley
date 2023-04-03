@@ -11,6 +11,7 @@ if [ -d ".git" ]; then
     $(pyenv which python) -m poetry run pre-commit install
 fi
 
+$(pyenv which python) poetry env use $(echo $PYENV_VERSION)
 $(pyenv which python) -m poetry lock
 
 rm -f FIRST_TIME_SETUP.sh
