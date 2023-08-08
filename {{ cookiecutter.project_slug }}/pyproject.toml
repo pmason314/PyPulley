@@ -43,10 +43,44 @@ build-backend = "poetry.core.masonry.api"
 line-length = 120
 
 [tool.ruff]
-select = ["F", "E", "W", "C90", "I", "N", "D", "UP", "YTT", "ANN", "ASYNC", "S", "BLE", "B", "A", "C4", "ISC", "ICN",
- "G", "INP", "T20", "PT", "Q", "RSE", "RET", "SLF", "SIM", "TID", "ARG", "PTH", "ERA", "PD", "PL", "NPY"]
+select = [
+    "F",
+    "E",
+    "W",
+    "C90",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "YTT",
+    "ANN",
+    "ASYNC",
+    "S",
+    "BLE",
+    "B",
+    "A",
+    "C4",
+    "ISC",
+    "ICN",
+    "G",
+    "INP",
+    "T20",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SIM",
+    "TID",
+    "ARG",
+    "PTH",
+    "ERA",
+    "PD",
+    "PL",
+    "NPY",
+]
 ignore = ["D203", "D212"]
-unfixable = ["B", "F401"]
+unfixable = ["F401"]
 line-length = 120
 
 [tool.ruff.per-file-ignores]
