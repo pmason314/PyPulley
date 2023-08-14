@@ -12,6 +12,7 @@ import subprocess
 from pathlib import Path
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
+DEPENDENCY_LINE = 27  # Where to insert the tool.poetry.dependencies section of pyproject.toml
 
 
 def remove_unused_resources() -> None:
@@ -36,7 +37,9 @@ def install_python() -> str:
     python_version = "{{ cookiecutter.python_version }}"
     standard_version_regex = r"^3.[0-9]+.[0-9]+$"
 
-    subprocess.run(["pyenv", "update"])  # Make sure most recent Python versions are accessible
+    # Make sure the most recent Python versions are available to pyenv
+    print("Updating pyenv")
+    subprocess.run(["pyenv", "update"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     cmd_output = subprocess.run(["pyenv", "install", "--list"], capture_output=True, encoding="UTF-8")
     all_versions = cmd_output.stdout.split("\n")
     all_versions = [x.strip() for x in all_versions]
@@ -49,13 +52,19 @@ def install_python() -> str:
         selected_versions = list(filter(lambda version: re.match(python_version, version), all_versions))
         python_version = selected_versions[-1]
 
-    subprocess.run(["pyenv", "install", python_version, "-s"])  # Skip installation if version already exists
+    # Skip installation if version already exists
+    print(f"Installing Python {python_version}")
+    subprocess.run(["pyenv", "install", python_version, "-s"], stdout=subprocess.DEVNULL)
     subprocess.run(["pyenv", "local", python_version])
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
-    with Path("pyproject.toml").open("a") as config_file:
-        config_file.write("\n[tool.poetry.dependencies]\n")
-        config_file.write(f'python = "~{python_version}"\n')
+    with Path("pyproject.toml").open() as config_file:
+        contents = config_file.readlines()
+        contents.insert(DEPENDENCY_LINE, "[tool.poetry.dependencies]\n")
+        contents.insert(DEPENDENCY_LINE + 1, f'python = "~{python_version}"\n\n')
+
+    with Path("pyproject.toml").open("w") as config_file:
+        config_file.writelines(contents)
 
     if "{{ cookiecutter.create_git_repo }}" == "y":
         subprocess.run(["git", "init"])
@@ -67,7 +76,6 @@ def install_python_dependencies(python_version: str) -> None:
     """Install all tools and frameworks with a specific version of Python."""
     # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
     os.environ["PYENV_VERSION"] = python_version
-    print(f"Current Python: {python_version}")
     subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])
     del os.environ["PYENV_VERSION"]
 

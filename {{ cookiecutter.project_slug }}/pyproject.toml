@@ -20,6 +20,8 @@ classifiers = [
 ]
 
 # https://python-poetry.org/docs/dependency-specification/#version-constraints
+
+# Add development dependencies here
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
 blacken-docs = "^1.12.1"
@@ -36,6 +38,7 @@ sphinx = "^5.3.0"
 sphinx-rtd-theme = "1.1.1"
 {%- endif %}
 
+# Add package/application dependencies here
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -64,7 +67,6 @@ select = [
     "ICN",
     "G",
     "INP",
-    "T20",
     "PT",
     "Q",
     "RSE",
@@ -87,6 +89,7 @@ line-length = 120
 {%- if cookiecutter.create_sphinx_docs == 'y' %}
 "docs/conf.py" = ["A001"]
 {%- endif %}
+"tests/*" = ["ANN201", "INP001"]
 
 [tool.ruff.pydocstyle]
 convention = "google"
