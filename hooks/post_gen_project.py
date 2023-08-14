@@ -54,7 +54,7 @@ def install_python() -> str:
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
     with Path("pyproject.toml").open("a") as config_file:
-        config_file.write("\n\n[tool.poetry.dependencies]\n")
+        config_file.write("\n[tool.poetry.dependencies]\n")
         config_file.write(f'python = "~{python_version}"\n')
 
     if "{{ cookiecutter.create_git_repo }}" == "y":
