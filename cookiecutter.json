@@ -8,15 +8,13 @@
     "python_version": "latest",
     "create_git_repo": "y",
     "create_sphinx_docs": "n",
-    "license":  ["MIT License", "BSD License", "Apache Software License 2.0", "GNU General Public License v3", "Not Open Source"],
-    "_precommit_version": "",
-    "_poetry_check_version": "",
-    "_creosote_version": "",
-    "_absolufy_version": "",
-    "_codespell_version": "",
-    "_black_version": "",
-    "_blacken_docs_version": "",
-    "_ruff_version": "",
+    "license": [
+        "MIT License",
+        "BSD License",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not Open Source"
+    ],
     "__prompts__": {
         "author": "Full name:",
         "email": "Email address:",
