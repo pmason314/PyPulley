@@ -1,5 +1,4 @@
-"""
-Pre-project-creation hooks.
+"""Pre-project-creation hooks.
 
 After all arguments to the cookiecutter project template have been given, validate the inputs.  If any fail, abort the
  creation process and clean up any created resources.
@@ -10,7 +9,7 @@ import subprocess
 import sys
 
 
-def validate_project_slug():
+def validate_project_slug() -> None:
     """Validate that the project slug given during project creation can be a proper Python module name."""
     valid_module_regex = r"^[_a-zA-Z][_a-zA-Z0-9]+$"
     module_name = "{{ cookiecutter.project_slug}}"
@@ -24,7 +23,7 @@ def validate_project_slug():
         sys.exit(1)
 
 
-def validate_python_version():
+def validate_python_version() -> None:
     """Validate that the version of Python given during project creation.  Only accepts standard CPython versions."""
     python_version = "{{ cookiecutter.python_version }}"
     valid_version_regex = r"^(latest|3|3.[0-9]+|3.[0-9]+.[0-9]+)$"
@@ -38,12 +37,12 @@ def validate_python_version():
         sys.exit(1)
 
 
-def verify_pyenv_installed():
+def verify_pyenv_installed() -> None:
     """Confirm that pyenv, a prerequisite for this template, has already been installed."""
     try:
         subprocess.run(["pyenv", "-v"], capture_output=True, encoding="UTF-8")
 
-    except (FileNotFoundError):
+    except FileNotFoundError:
         print("Pyenv was not found.  Please follow the instructions for installing requirements.")
         # Cancel project creation
         sys.exit(1)

@@ -48,8 +48,6 @@ select = [
     "ISC",
     "ICN",
     "G",
-    "INP",
-    "T20",
     "PT",
     "Q",
     "RSE",
@@ -64,7 +62,7 @@ select = [
     "PL",
     "NPY",
 ]
-ignore = ["D203", "D212"]
+ignore = ["D203", "D212", "PLR0133"]
 unfixable = []
 line-length = 120
 

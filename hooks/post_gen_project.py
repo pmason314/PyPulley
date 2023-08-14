@@ -14,7 +14,7 @@ from pathlib import Path
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
-def remove_unused_resources():
+def remove_unused_resources() -> None:
     """Delete unused files and directories related to declined template configuration options."""
     if "{{ cookiecutter.license }}" == "Not Open Source":
         Path.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
@@ -26,7 +26,7 @@ def remove_unused_resources():
         shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")
 
 
-def install_python():
+def install_python() -> str:
     """
     Figure out and install the specified version of Python.
 
@@ -55,7 +55,7 @@ def install_python():
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
     with Path("pyproject.toml").open("a") as config_file:
         config_file.write("\n\n[tool.poetry.dependencies]\n")
-        config_file.write(f'python = "{python_version}"\n')
+        config_file.write(f'python = "~{python_version}"\n')
 
     if "{{ cookiecutter.create_git_repo }}" == "y":
         subprocess.run(["git", "init"])
@@ -63,7 +63,7 @@ def install_python():
     return python_version
 
 
-def install_python_dependencies(python_version):
+def install_python_dependencies(python_version: str) -> None:
     """Install all tools and frameworks with a specific version of Python."""
     # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
     os.environ["PYENV_VERSION"] = python_version
