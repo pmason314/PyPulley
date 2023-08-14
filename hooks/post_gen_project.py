@@ -67,6 +67,7 @@ def install_python_dependencies(python_version: str) -> None:
     """Install all tools and frameworks with a specific version of Python."""
     # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
     os.environ["PYENV_VERSION"] = python_version
+    print(f"Current Python: {python_version}")
     subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])
     del os.environ["PYENV_VERSION"]
 
