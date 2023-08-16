@@ -41,13 +41,13 @@ repos:
       - id: black
         name: Format Python code with Black
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.15.0
+    rev: 1.15.0
     hooks:
       - id: blacken-docs
         name: Format Python code within documentation files
         additional_dependencies: [black==22.10.0]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.284
+    rev: v0.0.282
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
