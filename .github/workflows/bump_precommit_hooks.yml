@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Bump-pre-commit-Hook-Versions:
+  Bump-Pre-Commit-Hook-Versions:
     runs-on: ubuntu-latest
     permissions:
       contents: write
