@@ -17,7 +17,7 @@ repos:
       - id: check-yaml
         name: Ensure YAML files are valid
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.5.1
+    rev: 1.6.1
     hooks:
       - id: poetry-check
         name: Ensure Poetry configuration is valid
@@ -51,7 +51,7 @@ repos:
       - id: black
         name: Format Python code with Black
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.15.0
+    rev: 1.16.0
     hooks:
       - id: blacken-docs
         name: Format Python code within documentation files
