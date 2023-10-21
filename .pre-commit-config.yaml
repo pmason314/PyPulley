@@ -46,8 +46,9 @@ repos:
       - id: blacken-docs
         name: Format Python code within documentation files
         additional_dependencies: [black==22.10.0]
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.282
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff should run last unless autofix is enabled, in which case it should run first
+    rev: v0.1.1
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
