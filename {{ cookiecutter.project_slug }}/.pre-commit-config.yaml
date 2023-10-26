@@ -2,7 +2,7 @@ minimum_pre_commit_version: 2.15.0
 exclude: ^LICENSES/|\.(html|csv|svg)$
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
         name: Ensure files end in newlines
@@ -25,7 +25,7 @@ repos:
         name: Ensure Poetry lock file is up to date
         args: [--check]
   - repo: https://github.com/fredrikaverpil/creosote
-    rev: v2.6.3
+    rev: v3.0.0
     hooks:
       - id: creosote
         name: Identify unused dependencies with Creosote
@@ -40,13 +40,13 @@ repos:
       - id: absolufy-imports
         name: Ensure all imports are absolute
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
         name: Check for common misspellings in text files
         types_or: [python, rst, markdown]
   - repo: https://github.com/python/black
-    rev: 23.9.1
+    rev: 23.10.1
     hooks:
       - id: black
         name: Format Python code with Black
@@ -56,8 +56,9 @@ repos:
       - id: blacken-docs
         name: Format Python code within documentation files
         additional_dependencies: [black==22.10.0]
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.284
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff should run last unless autofix is enabled, in which case it should run first
+    rev: v0.1.0
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
