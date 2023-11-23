@@ -3,8 +3,7 @@
  #  pre-commit releases apart from the initial `v` (e.g. `v1.2.3` vs. `1.2.3`)
 
 # Pre-commit dependency list
-# deps=(pre-commit-hooks poetry creosote absolufy-imports codespell black blacken-docs ruff-pre-commit)\
-deps=(ruff)
+deps=(pre-commit-hooks poetry creosote absolufy-imports codespell black blacken-docs ruff-pre-commit)\
 pc_path="{{ cookiecutter.project_slug }}/.pre-commit-config.yaml"
 
 for hook in ${deps[@]}
