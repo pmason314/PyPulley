@@ -5,13 +5,13 @@ After successfully creating the cookiecutter and validating it with the pre-gene
  environment by installing Python, Poetry, and other dev dependencies.
 """
 
+import logging
 import os
 import re
 import shutil
 import subprocess
-from pathlib import Path
-import logging
 import sys
+from pathlib import Path
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 DEPENDENCY_LINE = 18  # Where to insert the tool.poetry.dependencies section of pyproject.toml
@@ -83,7 +83,7 @@ def install_python_dependencies(python_version: str) -> None:
     """Install all tools and frameworks with a specific version of Python."""
     # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
     os.environ["PYENV_VERSION"] = python_version
-    logger.info("Installing Poetry...")
+    logger.info("Installing poetry...")
     subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])
     del os.environ["PYENV_VERSION"]
 

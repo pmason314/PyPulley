@@ -73,7 +73,7 @@ select = [
     "PL",
     "NPY",
 ]
-ignore = ["D203", "D212", "ANN101]
+ignore = ["D203", "D212", "ANN101"]
 unfixable = []
 line-length = 120
 
