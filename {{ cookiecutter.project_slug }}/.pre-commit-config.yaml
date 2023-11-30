@@ -30,10 +30,10 @@ repos:
       - id: creosote
         name: Identify unused dependencies with Creosote
         args:
-          - --venv=$(poetry env info --path)
-          - --paths={{ cookiecutter.project_slug }}
+          - --venv=.venv
+          - --p={{ cookiecutter.project_slug }}
           - --deps-file=pyproject.toml
-          - --sections=tool.poetry.dependencies
+          - --s=tool.poetry.dependencies
   - repo: https://github.com/MarcoGorelli/absolufy-imports
     rev: v0.3.1
     hooks:
