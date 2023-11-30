@@ -26,10 +26,10 @@ classifiers = [
 [tool.poetry.dependencies] # Add package/application dependencies here
 
 [tool.creosote]
-venvs=[".venv"]
-paths=["{{cookiecutter.project_slug}}"]
-deps-file="pyproject.toml"
-sections=["project.dependencies"]
+venvs = [".venv"]
+paths = ["{{cookiecutter.project_slug}}"]
+deps-file = "pyproject.toml"
+sections = ["project.dependencies"]
 
 [build-system]
 requires = ["poetry-core"]

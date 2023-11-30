@@ -44,8 +44,8 @@ def install_python() -> str:
 
     # Make sure the most recent Python versions are available to pyenv
     logger.info("Updating pyenv...")
-    subprocess.run(["pyenv", "update"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    cmd_output = subprocess.run(["pyenv", "install", "--list"], capture_output=True, encoding="UTF-8")
+    subprocess.run(["pyenv", "update"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    cmd_output = subprocess.run(["pyenv", "install", "--list"], capture_output=True, encoding="UTF-8", check=True)
     all_versions = cmd_output.stdout.split("\n")
     all_versions = [x.strip() for x in all_versions]
     all_versions = list(filter(lambda version: re.match(standard_version_regex, version), all_versions))
@@ -59,8 +59,8 @@ def install_python() -> str:
 
     # Skip installation if version already exists
     logger.info(f"Installing Python {python_version}...")
-    subprocess.run(["pyenv", "install", python_version, "-s"], stdout=subprocess.DEVNULL)
-    subprocess.run(["pyenv", "local", python_version])
+    subprocess.run(["pyenv", "install", python_version, "-s"], stdout=subprocess.DEVNULL, check=True)
+    subprocess.run(["pyenv", "local", python_version], check=True)
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
     with Path("pyproject.toml").open() as config_file:
@@ -74,7 +74,7 @@ def install_python() -> str:
 
     if "{{ cookiecutter.create_git_repo }}" == "y":
         logger.info("Creating git repository...")
-        subprocess.run(["git", "init"], stdout=subprocess.DEVNULL)
+        subprocess.run(["git", "init"], stdout=subprocess.DEVNULL, check=True)
 
     return python_version
 
@@ -84,7 +84,7 @@ def install_python_dependencies(python_version: str) -> None:
     # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
     os.environ["PYENV_VERSION"] = python_version
     logger.info("Installing poetry...")
-    subprocess.run(["sh", "FIRST_TIME_SETUP.sh"])
+    subprocess.run(["sh", "FIRST_TIME_SETUP.sh"], check=True)
     del os.environ["PYENV_VERSION"]
 
 

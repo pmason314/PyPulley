@@ -40,7 +40,7 @@ def validate_python_version() -> None:
 def verify_pyenv_installed() -> None:
     """Confirm that pyenv, a prerequisite for this template, has already been installed."""
     try:
-        subprocess.run(["pyenv", "-v"], capture_output=True, encoding="UTF-8")
+        subprocess.run(["pyenv", "-v"], capture_output=True, encoding="UTF-8", check=True)
 
     except FileNotFoundError:
         print("Pyenv was not found.  Please follow the instructions for installing requirements.")
