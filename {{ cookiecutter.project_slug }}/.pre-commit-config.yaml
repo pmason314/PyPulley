@@ -58,7 +58,7 @@ repos:
         additional_dependencies: [black==22.10.0]
   # Ruff should run last unless autofix is enabled, in which case it should run first
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.0
+    rev: v0.1.7
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
