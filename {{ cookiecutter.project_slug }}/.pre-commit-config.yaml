@@ -55,10 +55,10 @@ repos:
     hooks:
       - id: blacken-docs
         name: Format Python code within documentation files
-        additional_dependencies: [black==22.10.0]
+        additional_dependencies: [black==23.12.1]
   # Ruff should run last unless autofix is enabled, in which case it should run first
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.9
+    rev: v0.1.11
     hooks:
       - id: ruff
         name: Lint Python code with Ruff

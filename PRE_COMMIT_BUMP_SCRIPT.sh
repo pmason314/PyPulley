@@ -16,4 +16,15 @@ do
     fi
     echo "Version $version found for $hook"
     perl -0777pi -e "s/(?<=- repo: https:\/\/github.com\/.{1,50}$hook\s{1,10}rev: v?)([\d|\.]{1,20})/$version/g" "$pc_path" >/dev/null 2>&1
+
+    if [ $hook = "black" ]; then
+        perl -0777pi -e "s/(?<=\s{1,10}additional_dependencies: \[black==)([\d|\.]{1,20})/$version/g" "$pc_path" >/dev/null 2>&1
+    fi
 done
+
+# Perl regex primer for sanity:
+# - The "-0777" applies the regex to the entire file instead of line-by-line
+# - The "i" flag applies case-insensitive matching
+# - The "p" flag preserves the matched string for use after matching.  Ignored in Perl >=5.20
+# - "s/x/y" substitutes x with y
+# - "?<=" is a zero-width positive lookbehind assertion.  Can match a word that comes after another word, without including the second word in the match.
