@@ -1,4 +1,4 @@
-name: Bump pre-commit Hook Versions
+name: Bump pre-commit hook versions
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Bump-Pre-Commit-Hook-Versions:
+  bump-versions:
     runs-on: ubuntu-latest
     permissions:
       contents: write
