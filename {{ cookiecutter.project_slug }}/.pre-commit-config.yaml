@@ -45,6 +45,13 @@ repos:
       - id: codespell
         name: Check for common misspellings in text files
         types_or: [python, rst, markdown]
+  # If ruff's autofix is disabled, it should be placed after the `black` hook instead of before it
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.11
+    hooks:
+      - id: ruff
+        name: Lint Python code with Ruff
+        args: [--fix, --exit-non-zero-on-fix]
   - repo: https://github.com/python/black
     rev: 23.12.1
     hooks:
@@ -56,9 +63,4 @@ repos:
       - id: blacken-docs
         name: Format Python code within documentation files
         additional_dependencies: [black==23.12.1]
-  # Ruff should run last unless autofix is enabled, in which case it should run first
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.11
-    hooks:
-      - id: ruff
-        name: Lint Python code with Ruff
+
