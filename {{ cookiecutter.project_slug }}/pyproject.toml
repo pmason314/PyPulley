@@ -25,15 +25,15 @@ classifiers = [
 
 [tool.poetry.dependencies] # Add package/application dependencies here
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.creosote]
 venvs = [".venv"]
 paths = ["{{cookiecutter.project_slug}}"]
 deps-file = "pyproject.toml"
 sections = ["project.dependencies"]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
