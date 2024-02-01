@@ -47,13 +47,13 @@ repos:
         types_or: [python, rst, markdown]
   # If ruff's autofix is disabled, it should be placed after the `black` hook instead of before it
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.11
+    rev: v0.1.15
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
         args: [--fix, --exit-non-zero-on-fix]
   - repo: https://github.com/python/black
-    rev: 23.12.1
+    rev: 24.1.1
     hooks:
       - id: black
         name: Format Python code with Black
@@ -62,5 +62,5 @@ repos:
     hooks:
       - id: blacken-docs
         name: Format Python code within documentation files
-        additional_dependencies: [black==23.12.1]
+        additional_dependencies: [black==24.1.1]
 
