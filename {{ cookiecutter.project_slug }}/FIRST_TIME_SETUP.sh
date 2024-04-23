@@ -5,7 +5,10 @@ poetry config --local virtualenvs.prefer-active-python true >/dev/null
 poetry config --local virtualenvs.in-project true >/dev/null
 poetry self update >/dev/null
 poetry self add poetry-dotenv-plugin >/dev/null
-poetry add --lock --group dev black blacken-docs ruff pytest pytest-cov pytest-mock >/dev/null
+poetry add --lock --group dev black ruff pytest pytest-cov pytest-mock >/dev/null
+{%- if cookiecutter.formatter == 'black' %}
+poetry add --lock --group dev black blacken-docs >/dev/null
+{%- endif %}
 {%- if cookiecutter.create_git_repo == 'y' %}
 poetry add --lock --group dev creosote pre-commit >/dev/null
 {%- endif %}

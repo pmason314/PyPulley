@@ -6,6 +6,10 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "project_version": "0.1.0",
     "python_version": "latest",
+    "formatter": [
+        "ruff",
+        "black"
+    ],
     "create_git_repo": "y",
     "create_sphinx_docs": "n",
     "license": [
@@ -23,6 +27,7 @@
         "project_slug": "Project directory name",
         "project_version": "Initial project version:",
         "python_version": "Target Python version:",
+        "formatter": "Code formatter:",
         "create_git_repo": "Create git repository:",
         "create_sphinx_docs": "Create documentation with Sphinx:",
         "license": "Open source license:"

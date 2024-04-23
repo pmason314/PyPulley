@@ -45,13 +45,21 @@ repos:
       - id: codespell
         name: Check for common misspellings in text files
         types_or: [python, rst, markdown]
+{%- if cookiecutter.formatter == 'black' %}
   # If ruff's autofix is disabled, it should be placed after the `black` hook instead of before it
+{%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.3.4
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
         args: [--fix, --exit-non-zero-on-fix]
+{%- if cookiecutter.formatter == 'ruff' %}
+      - id: ruff-format
+        name: Format Python code with Ruff
+        types_or: [python, jupyter]
+{%- endif %}
+{%- if cookiecutter.formatter == 'black' %}
   - repo: https://github.com/python/black
     rev: 24.3.0
     hooks:
@@ -63,4 +71,4 @@ repos:
       - id: blacken-docs
         name: Format Python code within documentation files
         additional_dependencies: [black==24.3.0]
-
+{%- endif %}
