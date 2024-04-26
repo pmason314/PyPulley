@@ -1,13 +1,14 @@
 {%- set license_classifiers = {
-    'MIT license': 'License :: OSI Approved :: MIT License',
-    'BSD license': 'License :: OSI Approved :: BSD License',
+    'MIT License': 'License :: OSI Approved :: MIT License',
+    'BSD License': 'License :: OSI Approved :: BSD License',
     'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
     'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
 } %}[tool.poetry]
 name = "{{cookiecutter.project_slug}}"
 version = "{{cookiecutter.project_version}}"
 description = "A short description of the package."
-license = "{{cookiecutter.license}}"
+{%- if cookiecutter.license != "Not Open Source" %}
+license = "{{cookiecutter.license}}"{% endif %}
 authors = ["{{cookiecutter.author}} <{{cookiecutter.email}}>"]
 readme = "README.md"
 classifiers = [
@@ -34,12 +35,12 @@ venvs = [".venv"]
 paths = ["{{cookiecutter.project_slug}}"]
 deps-file = "pyproject.toml"
 sections = ["project.dependencies"]
-
 {%- if cookiecutter.formatter == 'black' %}
+
 [tool.black]
 line-length = 120
-
 {%- endif %}
+
 [tool.ruff]
 line-length = 120
 extend-include = ["*.ipynb"]
@@ -79,7 +80,7 @@ select = [
     "PL",
     "NPY",
 ]
-ignore = ["D203", "D212", "ANN101"]
+ignore = ["D203", "D212", "ANN101", "ISC001"]
 unfixable = []
 
 [tool.ruff.lint.per-file-ignores]
@@ -88,19 +89,19 @@ unfixable = []
 {%- endif %}
 "tests/*" = ["ANN201", "INP001"]
 
-{%- if cookiecutter.formatter == 'ruff' %}
-[tool.ruff.format]
-docstring-code-format = true
-
-{%- endif %}
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+{%- if cookiecutter.create_sphinx_docs == 'y' %}
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["copyright"]
+{%- endif %}
+{%- if cookiecutter.formatter == 'ruff' %}
+
+[tool.ruff.format]
+docstring-code-format = true
+{%- endif %}
 
 [tool.pytest.ini_options]
 addopts = "--cov={{cookiecutter.project_slug}}"
 testpaths = ["tests"]
-
-{%- if cookiecutter.create_sphinx_docs == 'y' %}
-[tool.ruff.flake8-builtins]
-builtins-ignorelist = ["copyright"]
-{%- endif %}

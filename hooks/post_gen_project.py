@@ -14,7 +14,6 @@ import sys
 from pathlib import Path
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-DEPENDENCY_LINE = 18  # Where to insert the tool.poetry.dependencies section of pyproject.toml
 
 logging.basicConfig(stream=sys.stdout, format="%(message)s", level=logging.INFO)
 logger = logging.getLogger()
@@ -63,15 +62,22 @@ def install_python() -> str:
     subprocess.run(["pyenv", "local", python_version], check=True)
 
     # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
+    dependency_line_pattern = re.compile(r"\[tool.poetry.dependencies\]")
+
+    python_insertion_line = 1
+    for i, line in enumerate(Path.open("pyproject.toml")):
+        match = re.search(dependency_line_pattern, line)
+        if match:
+            python_insertion_line = i + 1
+            break
+
     with Path("pyproject.toml").open() as config_file:
         contents = config_file.readlines()
-        contents.insert(DEPENDENCY_LINE, f'python = "~{python_version}"\n')
-
+        contents.insert(python_insertion_line, f'python = "~{python_version}"\n')
     with Path("pyproject.toml").open("w") as config_file:
         config_file.writelines(contents)
 
     # Install dev dependencies
-
     if "{{ cookiecutter.create_git_repo }}" == "y":
         logger.info("Creating git repository...")
         subprocess.run(["git", "init"], stdout=subprocess.DEVNULL, check=True)
