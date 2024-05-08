@@ -18,7 +18,7 @@ classifiers = [
 {%- endif %}
     'Programming Language :: Python :: 3',
 ]
-package-mode = false
+package-mode = true
 
 # How to specify dependency version constraints with Poetry
 # https://python-poetry.org/docs/dependency-specification/#version-constraints
