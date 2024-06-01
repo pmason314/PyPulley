@@ -17,7 +17,7 @@ repos:
       - id: check-yaml
         name: Ensure YAML files are valid
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.8.2
+    rev: 1.8.3
     hooks:
       - id: poetry-check
         name: Ensure Poetry configuration is valid
@@ -40,7 +40,7 @@ repos:
       - id: absolufy-imports
         name: Ensure all imports are absolute
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         name: Check for common misspellings in text files
@@ -49,7 +49,7 @@ repos:
   # If ruff's autofix is disabled, it should be placed after the `black` hook instead of before it
 {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.2
+    rev: v0.4.7
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
