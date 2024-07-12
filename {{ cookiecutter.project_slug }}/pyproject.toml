@@ -33,9 +33,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.creosote]
 venvs = [".venv"]
-paths = ["{{cookiecutter.project_slug}}"]
+paths = ["{{cookiecutter.project_slug}}", "tests"]
 deps-file = "pyproject.toml"
-sections = ["project.dependencies"]
+sections = ["tool.poetry.dependencies"]
 {%- if cookiecutter.formatter == 'black' %}
 
 [tool.black]
@@ -80,8 +80,16 @@ select = [
     "PD",
     "PL",
     "NPY",
+    "RUF",
 ]
-ignore = ["D203", "D212", "ANN101", "ISC001"]
+ignore = [
+    "D203",    # Checks for class docstrings that are preceded by a blank line (Alternative to D211)
+    "D213",    # Checks for summary docstrings that are not on the second line of the docstring (Alternative to D212)
+    "ANN101",  # Missing type annotations for `self` methods
+    "ISC001",  # Conflicts with ruff's formatter
+    "PD901",   # Usage of `df` for DataFrame variable names 
+    "G004",    # Logging statement uses f-string
+]
 unfixable = []
 
 [tool.ruff.lint.per-file-ignores]
