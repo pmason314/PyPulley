@@ -83,8 +83,8 @@ select = [
     "RUF",
 ]
 ignore = [
-    "D203",    # Checks for class docstrings that are preceded by a blank line (Alternative to D211)
-    "D213",    # Checks for summary docstrings that are not on the second line of the docstring (Alternative to D212)
+    "D203",    # Class docstring is missing a blank line after (Alternative to D211)
+    "D213",    # Docstring summary is not on the second line of the docstring (Alternative to D212)
     "ANN101",  # Missing type annotations for `self` methods
     "ISC001",  # Conflicts with ruff's formatter
     "PD901",   # Usage of `df` for DataFrame variable names 
@@ -96,6 +96,7 @@ unfixable = []
 {%- if cookiecutter.create_sphinx_docs == 'y' %}
 "docs/conf.py" = ["INP001"]
 {%- endif %}
+"__init__.py" = ["D104", "F401"]
 "tests/*" = ["ANN201", "INP001"]
 
 [tool.ruff.lint.pydocstyle]
