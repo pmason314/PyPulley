@@ -16,7 +16,7 @@ poetry add --lock --group dev creosote pre-commit >/dev/null
 {%- if cookiecutter.create_sphinx_docs == 'y' %}
 poetry add --lock --group dev sphinx sphinx-rtd-theme >/dev/null
 {%- endif %}
-poetry install --no-root
+poetry install
 
 if [ -d ".git" ]; then
     poetry run pre-commit install
