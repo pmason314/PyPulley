@@ -49,7 +49,7 @@ repos:
   # If ruff's autofix is disabled, it should be placed after the `black` hook instead of before it
 {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.5.5
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
