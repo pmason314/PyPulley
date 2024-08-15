@@ -59,6 +59,7 @@ select = [
     "YTT",
     "ANN",
     "ASYNC",
+    "S",
     "BLE",
     "B",
     "A",
@@ -86,6 +87,8 @@ ignore = [
     "D203",    # Class docstring is missing a blank line after (Alternative to D211)
     "D213",    # Docstring summary is not on the second line of the docstring (Alternative to D212)
     "ANN101",  # Missing type annotations for `self` methods
+    "S101",    # Usage of assert statements 
+    "S603",    # Subprocess call without validated input 
     "ISC001",  # Conflicts with ruff's formatter
     "PD901",   # Usage of `df` for DataFrame variable names 
     "G004",    # Logging statement uses f-string

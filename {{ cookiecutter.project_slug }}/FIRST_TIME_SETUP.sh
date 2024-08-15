@@ -1,6 +1,6 @@
 $(pyenv which python) -m pip install --upgrade pip >/dev/null
 $(pyenv which python) -m pip install pipx >/dev/null
-$(pyenv which python) -m pipx reinstall poetry >/dev/null 2>&1
+$(pyenv which python) -m pipx install poetry >/dev/null 2>&1
 poetry config --local virtualenvs.create true >/dev/null
 poetry config --local virtualenvs.in-project true >/dev/null
 poetry config --local virtualenvs.prefer-active-python true >/dev/null

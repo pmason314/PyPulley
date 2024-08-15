@@ -5,6 +5,7 @@ description = ""
 authors = ["Peter Mason <pm3.141@gmail.com>"]
 license = "MIT License"
 readme = "README.md"
+package-mode = false
 
 # https://python-poetry.org/docs/dependency-specification/#version-constraints
 [tool.poetry.dependencies]

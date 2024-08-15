@@ -65,7 +65,7 @@ def install_python() -> str:
     dependency_line_pattern = re.compile(r"\[tool.poetry.dependencies\]")
 
     python_insertion_line = 1
-    for i, line in enumerate(Path.open("pyproject.toml")):
+    for i, line in enumerate(Path.open(Path("pyproject.toml"))):
         match = re.search(dependency_line_pattern, line)
         if match:
             python_insertion_line = i + 1
