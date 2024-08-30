@@ -1,27 +1,19 @@
-$(pyenv which python) -m pip install --upgrade pip >/dev/null
-$(pyenv which python) -m pip install pipx >/dev/null
-$(pyenv which python) -m pipx install poetry >/dev/null 2>&1
-poetry config --local virtualenvs.create true >/dev/null
-poetry config --local virtualenvs.in-project true >/dev/null
-poetry config --local virtualenvs.prefer-active-python true >/dev/null
-poetry self update >/dev/null
-poetry self add poetry-dotenv-plugin >/dev/null
-poetry add --lock --group dev black ruff pytest pytest-cov pytest-mock >/dev/null
-{%- if cookiecutter.formatter == 'black' %}
-poetry add --lock --group dev black blacken-docs >/dev/null
-{%- endif %}
+echo "Installing dev packages..."
+uv add ruff ipykernel pytest --dev >/dev/null 2>&1
 {%- if cookiecutter.create_git_repo == 'y' %}
-poetry add --lock --group dev creosote pre-commit >/dev/null
+uv add creosote pre-commit --dev >/dev/null 2>&1
 {%- endif %}
 {%- if cookiecutter.create_sphinx_docs == 'y' %}
-poetry add --lock --group dev sphinx sphinx-rtd-theme >/dev/null
+uv add dev sphinx sphinx-rtd-theme --dev >/dev/null 2>&1
 {%- endif %}
-poetry install
 
 if [ -d ".git" ]; then
-    poetry run pre-commit install
+    uv run pre-commit install >/dev/null 2>&1
 fi
 
-poetry env use $PYENV_VERSION
-poetry lock >/dev/null
+cat config_template.toml >> pyproject.toml
+
 rm -f FIRST_TIME_SETUP.sh
+rm -f config_template.toml
+
+echo "Done!  Project is ready at $(pwd)"

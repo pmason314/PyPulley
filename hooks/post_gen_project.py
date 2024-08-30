@@ -19,19 +19,7 @@ logging.basicConfig(stream=sys.stdout, format="%(message)s", level=logging.INFO)
 logger = logging.getLogger()
 
 
-def remove_unused_resources() -> None:
-    """Delete unused files and directories related to declined template configuration options."""
-    if "{{ cookiecutter.license }}" == "Not Open Source":
-        Path.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
-
-    if "{{ cookiecutter.create_git_repo }}" == "n":
-        Path.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
-
-    if "{{ cookiecutter.create_sphinx_docs }}" == "n":
-        shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")
-
-
-def install_python() -> str:
+def install_python() -> None:
     """
     Figure out and install the specified version of Python.
 
@@ -39,62 +27,82 @@ def install_python() -> str:
         int: specific Python version selected for the project
     """
     python_version = "{{ cookiecutter.python_version }}"
-    standard_version_regex = r"^3.[0-9]+.[0-9]+$"
 
-    # Make sure the most recent Python versions are available to pyenv
-    logger.info("Updating pyenv...")
-    subprocess.run(["pyenv", "update"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-    cmd_output = subprocess.run(["pyenv", "install", "--list"], capture_output=True, encoding="UTF-8", check=True)
-    all_versions = cmd_output.stdout.split("\n")
-    all_versions = [x.strip() for x in all_versions]
-    all_versions = list(filter(lambda version: re.match(standard_version_regex, version), all_versions))
+    # Install and update uv
+    try:
+        subprocess.run("uv self update", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=True, check=True)
+    except subprocess.CalledProcessError:
+        logger.info("Installing uv...")
+        subprocess.run("curl -LsSf https://astral.sh/uv/install.sh | sh", shell=True, stdout=subprocess.DEVNULL, check=True)
 
     if python_version == "latest":
-        python_version = all_versions[-1]
-    else:
-        python_version = rf"^{python_version}"
-        selected_versions = list(filter(lambda version: re.match(python_version, version), all_versions))
-        python_version = selected_versions[-1]
+        python_version = subprocess.run("uv python list | head -n 1 | awk '{print $1;}'", capture_output=True, text=True, shell=True, check=True)
+        python_version = python_version.stdout.strip()
 
-    # Skip installation if version already exists
-    logger.info(f"Installing Python {python_version}...")
-    subprocess.run(["pyenv", "install", python_version, "-s"], stdout=subprocess.DEVNULL, check=True)
-    subprocess.run(["pyenv", "local", python_version], check=True)
+    subprocess.run(["uv", "init", "--python", python_version, "--python-preference", "only-managed"], check=True)
+    subprocess.run(["uv", "venv", "--python", python_version, "--python-preference", "only-managed"], check=True)
 
-    # Add Python version requirement to pyproject.toml for poetry since it can't be inferred from cookiecutter
-    dependency_line_pattern = re.compile(r"\[tool.poetry.dependencies\]")
-
-    python_insertion_line = 1
-    for i, line in enumerate(Path.open(Path("pyproject.toml"))):
-        match = re.search(dependency_line_pattern, line)
-        if match:
-            python_insertion_line = i + 1
-            break
-
-    with Path("pyproject.toml").open() as config_file:
-        contents = config_file.readlines()
-        contents.insert(python_insertion_line, f'python = "~{python_version}"\n')
-    with Path("pyproject.toml").open("w") as config_file:
-        config_file.writelines(contents)
-
-    # Install dev dependencies
     if "{{ cookiecutter.create_git_repo }}" == "y":
-        logger.info("Creating git repository...")
         subprocess.run(["git", "init"], stdout=subprocess.DEVNULL, check=True)
 
-    return python_version
+def remove_unused_resources() -> None:
+    """Delete unused files and directories related to declined template configuration options."""
 
+    Path.unlink(Path(PROJECT_DIRECTORY) / "hello.py")
 
-def install_python_dependencies(python_version: str) -> None:
-    """Install all tools and frameworks with a specific version of Python."""
-    # Set the PYENV_VERSION environment variable so it can be used by the setup script, then unset it after
-    os.environ["PYENV_VERSION"] = python_version
-    logger.info("Installing poetry...")
-    subprocess.run(["sh", "FIRST_TIME_SETUP.sh"], check=True)
-    del os.environ["PYENV_VERSION"]
+    if "{{ cookiecutter.license }}" == "Not Open Source":
+        Path.unlink(Path(PROJECT_DIRECTORY) / "LICENSE")
 
+    if "{{ cookiecutter.create_git_repo }}" == "n":
+        Path.unlink(Path(PROJECT_DIRECTORY) / ".gitignore")
+        Path.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
+
+    if "{{ cookiecutter.create_sphinx_docs }}" == "n":
+        shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")
+
+def add_pyproject_details():
+    """Add project details to the pyproject.toml file."""
+
+    if "{{ cookiecutter.license }}" == "MIT License":
+        license_classifier = "MIT License: License :: OSI Approved :: MIT License"
+    elif "{{ cookiecutter.license }}" == "BSD License":
+        license_classifier = "BSD License: License :: OSI Approved :: BSD License"
+    elif "{{ cookiecutter.license }}" == "Apache License 2.0":
+        license_classifier = "Apache Software License 2.0: License :: OSI Approved :: Apache Software License"
+    elif "{{ cookiecutter.license }}" == "GNU General Public License v3":
+        license_classifier = "GNU General Public License v3: License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+
+    project_license = "{{ cookiecutter.license }}"
+    pyproject_path = Path(PROJECT_DIRECTORY) / "pyproject.toml"
+    author = subprocess.run(["git", "config", "--get", "user.name"], capture_output=True, text=True, check=True)
+    author = author.stdout.strip()
+    email = subprocess.run(["git", "config", "--get", "user.email"], capture_output=True, text=True, check=True)
+    email = email.stdout.strip()
+    author_line = "{name = \"" + author + "\", email = \"" + email + "\"},"  
+
+    with pyproject_path.open("r") as file:
+        lines = file.readlines()
+
+    with pyproject_path.open("w") as file:
+        for line in lines:
+            file.write(line)
+            if line.strip().startswith("readme = "):
+                if project_license != "Not Open Source":
+                    file.write(f"license = \"{project_license}\"\n")
+                file.write("authors = [\n")
+                file.write(f"\t{author_line}\n")
+                file.write("]\n")
+                file.write("classifiers = [\n")
+                file.write(f"\t\"{license_classifier}\",\n")
+                file.write("\t\"Programming Language :: Python :: 3\",\n")
+                file.write("\t\"Natural Language :: English\",\n")
+                file.write("]\n")
+
+            elif line.strip().startswith("requires-python"):
+                file.write("\n")
 
 if __name__ == "__main__":
-    remove_unused_resources()
     project_python_version = install_python()
-    install_python_dependencies(project_python_version)
+    remove_unused_resources()
+    add_pyproject_details()
+    subprocess.run(["sh", "FIRST_TIME_SETUP.sh"], check=True)

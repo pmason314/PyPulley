@@ -37,17 +37,5 @@ def validate_python_version() -> None:
         sys.exit(1)
 
 
-def verify_pyenv_installed() -> None:
-    """Confirm that pyenv, a prerequisite for this template, has already been installed."""
-    try:
-        subprocess.run(["pyenv", "-v"], capture_output=True, encoding="UTF-8", check=True)
-
-    except FileNotFoundError:
-        print("Pyenv was not found.  Please follow the instructions for installing requirements.")
-        # Cancel project creation
-        sys.exit(1)
-
-
 validate_project_slug()
 validate_python_version()
-verify_pyenv_installed()

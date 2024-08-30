@@ -1,0 +1,80 @@
+
+[tool.ruff]
+line-length = 120
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E",
+    "W",
+    "C90",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "YTT",
+    "ANN",
+    "ASYNC",
+    "S",
+    "BLE",
+    "B",
+    "A",
+    "C4",
+    "ISC",
+    "ICN",
+    "G",
+    "INP",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SIM",
+    "TID",
+    "ARG",
+    "PTH",
+    "ERA",
+    "PD",
+    "PL",
+    "NPY",
+    "RUF",
+]
+ignore = [
+    "D203",    # Class docstring is missing a blank line after (Alternative to D211)
+    "D213",    # Docstring summary is not on the second line of the docstring (Alternative to D212)
+    "ANN101",  # Missing type annotations for `self` methods
+    "S101",    # Usage of assert statements 
+    "S603",    # Subprocess call without validated input 
+    "ISC001",  # Conflicts with ruff's formatter
+    "PD901",   # Usage of `df` for DataFrame variable names 
+    "G004",    # Logging statement uses f-string
+]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["D104", "F401"]
+{%- if cookiecutter.create_sphinx_docs == 'y' %}
+"docs/conf.py" = ["INP001"]
+{%- endif %}
+"tests/*" = ["ANN201", "INP001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+{%- if cookiecutter.create_sphinx_docs == 'y' %}
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["copyright"]
+{%- endif %}
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.creosote]
+venvs = [".venv"]
+paths = ["{{cookiecutter.project_slug}}", "tests"]
+deps-file = "pyproject.toml"
+sections = ["project.dependencies"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
