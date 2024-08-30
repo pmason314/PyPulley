@@ -26,11 +26,6 @@ repos:
           - --p={{ cookiecutter.project_slug }}
           - --deps-file=pyproject.toml
           - --s=project.dependencies
-  - repo: https://github.com/MarcoGorelli/absolufy-imports
-    rev: v0.3.1
-    hooks:
-      - id: absolufy-imports
-        name: Ensure all imports are absolute
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:
