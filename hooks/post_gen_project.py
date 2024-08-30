@@ -56,6 +56,7 @@ def remove_unused_resources() -> None:
     if "{{ cookiecutter.create_git_repo }}" == "n":
         Path.unlink(Path(PROJECT_DIRECTORY) / ".gitignore")
         Path.unlink(Path(PROJECT_DIRECTORY) / ".pre-commit-config.yaml")
+        shutil.rmtree(Path(PROJECT_DIRECTORY) / ".github")
 
     if "{{ cookiecutter.create_sphinx_docs }}" == "n":
         shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")

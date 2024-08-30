@@ -1,56 +1,69 @@
 
 [tool.ruff]
 line-length = 120
-extend-include = ["*.ipynb"]
 
 [tool.ruff.lint]
 select = [
-    "F",
-    "E",
-    "W",
-    "C90",
-    "I",
-    "N",
-    "D",
-    "UP",
-    "YTT",
-    "ANN",
-    "ASYNC",
-    "S",
-    "BLE",
-    "B",
-    "A",
-    "C4",
-    "ISC",
-    "ICN",
-    "G",
-    "INP",
-    "PT",
-    "Q",
-    "RSE",
-    "RET",
-    "SLF",
-    "SIM",
-    "TID",
-    "ARG",
-    "PTH",
-    "ERA",
-    "PD",
-    "PL",
-    "NPY",
-    "RUF",
+    "F",        # pyflakes
+    "E",        # pycodestyle (errors)
+    "W",        # pycodestyle (warnings)
+    "C90",      # mccabe complexity
+    "I",        # isort
+    "N",        # pep8-naming
+    "D",        # pydocstyle
+    "UP",       # pyupgrade
+    "YTT",      # flake8-2020
+    "ANN",      # flake8-annotations
+    "ASYNC",    # flake8-async
+    "S",        # flake8-bandit
+    "BLE",      # flake8-blind-except
+    "B",        # flake8-bugbear
+    "A",        # flake8-builtins
+    "C4",       # flake8-comprehensions
+    "DTZ",      # flake8-datetimez
+    "T10",      # flake8-debugger
+    "ISC",      # flake8-implicit-str-concat
+    "ICN",      # flake8-import-conventions
+    "LOG",      # flake8-logging
+    "G",        # flake8-logging-format
+    "INP",      # flake8-no-pep420
+    "PYI",      # flake8-pyi
+    "PT",       # flake8-pytest-style
+    "Q",        # flake8-quotes
+    "RSE",      # flake8-raise
+    "RET",      # flake8-return
+    "SLF",      # flake8-self
+    "SIM",      # flake8-simplify
+    "TID",      # flake8-tidy-imports
+    "TCH",      # flake8-type-checking
+    "ARG",      # flake8-unused-arguments
+    "PTH",      # flake8-use-pathlib
+    "TD",       # flake8-todos
+    "FIX",      # flake8-fixme
+    "PD",       # pandas-vet
+    "PL",       # pylint
+    "TRY",      # tryceratops
+    "FLY",      # flynt
+    "NPY",      # numpy-specific rules
+    "FURB",     # refurb
+    "DOC",      # pydoclint
+    "RUF",      # ruff-specific rules
 ]
 ignore = [
-    "D203",    # Class docstring is missing a blank line after (Alternative to D211)
-    "D213",    # Docstring summary is not on the second line of the docstring (Alternative to D212)
-    "ANN101",  # Missing type annotations for `self` methods
-    "S101",    # Usage of assert statements 
-    "S603",    # Subprocess call without validated input 
-    "ISC001",  # Conflicts with ruff's formatter
-    "PD901",   # Usage of `df` for DataFrame variable names 
-    "G004",    # Logging statement uses f-string
+    "ANN101",   # Missing type annotations for `self` methods
+    "D203",     # Class docstring is missing a blank line after (Alternative to D211)
+    "D213",     # Docstring summary is not on the second line of the docstring (Alternative to D212)
+    "G004",     # Logging statement uses f-string
+    "ISC001",   # Conflicts with ruff's formatter
+    "PD901",    # Usage of `df` for DataFrame variable names
+    "S101",     # Usage of assert statements
+    "S603",     # Subprocess call without validated input
+    "TRY002",   # Create your own exception class
+    "TRY003",   # Avoid specifying long messages outsdie of the exception class
 ]
-unfixable = []
+unfixable = [
+    "F401"
+]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["D104", "F401"]

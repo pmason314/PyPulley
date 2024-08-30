@@ -42,8 +42,12 @@ repos:
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
-        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [ python, jupyter]
+        args:
+          - --fix
+          - --exit-non-zero-on-fix
+          - --extend-select=ERA
+          - --extend-fixable=F401
       - id: ruff-format
         name: Format Python code with Ruff
         types_or: [python, jupyter]
-
