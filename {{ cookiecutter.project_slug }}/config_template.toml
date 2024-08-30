@@ -60,9 +60,11 @@ ignore = [
     "S603",     # Subprocess call without validated input
     "TRY002",   # Create your own exception class
     "TRY003",   # Avoid specifying long messages outsdie of the exception class
+    "FIX002",   # Line contains "TODO"
+    "TD002",    # Check that TODO comments have authors mentioned
 ]
 unfixable = [
-    "F401"
+    "F401"      # Remove unused imports
 ]
 
 [tool.ruff.lint.per-file-ignores]
