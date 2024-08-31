@@ -12,6 +12,7 @@ if [ -d ".git" ]; then
 fi
 
 cat config_template.toml >> pyproject.toml
+uv pip install --editable . >/dev/null 2>&1
 
 rm -f FIRST_TIME_SETUP.sh
 rm -f config_template.toml
