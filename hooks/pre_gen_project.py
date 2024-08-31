@@ -5,7 +5,6 @@ After all arguments to the cookiecutter project template have been given, valida
 """
 
 import re
-import subprocess
 import sys
 
 
@@ -37,5 +36,6 @@ def validate_python_version() -> None:
         sys.exit(1)
 
 
-validate_project_slug()
-validate_python_version()
+if __name__ == "__main__":
+    validate_project_slug()
+    validate_python_version()

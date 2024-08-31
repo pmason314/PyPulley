@@ -1,5 +1,4 @@
-"""
-Configuration file for the Sphinx documentation builder.
+"""Configuration file for the Sphinx documentation builder.
 
 Run `sphinx-apidoc -f -o docs {{ cookiecutter.project_slug }}` to build the documentation.
 
@@ -12,15 +11,13 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html#project-informatio
 
 import sys
 from pathlib import Path
-import subprocess
 
 sys.path.insert(0, str(Path(Path.cwd() / "../{{ cookiecutter.project_slug }}")))
 
 
 project = "{{ cookiecutter.project_name }}"
-author = subprocess.run(["git", "config", "--get", "user.name"], capture_output=True, text=True, check=True)
-author = author.stdout.strip()
-copyright = "{% now 'local', '%Y' %}, {{ cookiecutter.project_name }}"
+author = "{{ cookiecutter.author }}"
+copyright = "{% now 'local', '%Y' %}, {{ cookiecutter.author }}"
 release = "0.1.0"
 
 # -- General configuration ---------------------------------------------------

@@ -46,7 +46,6 @@ select = [
     "FLY",      # flynt
     "NPY",      # numpy-specific rules
     "FURB",     # refurb
-    "DOC",      # pydoclint
     "RUF",      # ruff-specific rules
 ]
 ignore = [

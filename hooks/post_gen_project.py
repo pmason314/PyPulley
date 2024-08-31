@@ -1,5 +1,4 @@
-"""
-Post-project-creation hooks.
+"""Post-project-creation hooks.
 
 After successfully creating the cookiecutter and validating it with the pre-generation hooks, set up the new project
  environment by installing Python, Poetry, and other dev dependencies.
@@ -7,7 +6,6 @@ After successfully creating the cookiecutter and validating it with the pre-gene
 
 import logging
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -20,8 +18,7 @@ logger = logging.getLogger()
 
 
 def install_python() -> None:
-    """
-    Figure out and install the specified version of Python.
+    """Figure out and install the specified version of Python.
 
     Returns:
         int: specific Python version selected for the project
@@ -33,10 +30,14 @@ def install_python() -> None:
         subprocess.run("uv self update", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=True, check=True)
     except subprocess.CalledProcessError:
         logger.info("Installing uv...")
-        subprocess.run("curl -LsSf https://astral.sh/uv/install.sh | sh", shell=True, stdout=subprocess.DEVNULL, check=True)
+        subprocess.run(
+            "curl -LsSf https://astral.sh/uv/install.sh | sh", shell=True, stdout=subprocess.DEVNULL, check=True
+        )
 
     if python_version == "latest":
-        python_version = subprocess.run("uv python list | head -n 1 | awk '{print $1;}'", capture_output=True, text=True, shell=True, check=True)
+        python_version = subprocess.run(
+            "uv python list | head -n 1 | awk '{print $1;}'", capture_output=True, text=True, shell=True, check=True
+        )
         python_version = python_version.stdout.strip()
 
     subprocess.run(["uv", "init", "--python", python_version, "--python-preference", "only-managed"], check=True)
@@ -45,9 +46,9 @@ def install_python() -> None:
     if "{{ cookiecutter.create_git_repo }}" == "y":
         subprocess.run(["git", "init"], stdout=subprocess.DEVNULL, check=True)
 
+
 def remove_unused_resources() -> None:
     """Delete unused files and directories related to declined template configuration options."""
-
     Path.unlink(Path(PROJECT_DIRECTORY) / "hello.py")
 
     if "{{ cookiecutter.license }}" == "Not Open Source":
@@ -61,9 +62,9 @@ def remove_unused_resources() -> None:
     if "{{ cookiecutter.create_sphinx_docs }}" == "n":
         shutil.rmtree(Path(PROJECT_DIRECTORY) / "docs")
 
-def add_pyproject_details():
-    """Add project details to the pyproject.toml file."""
 
+def add_pyproject_details() -> None:
+    """Add project details to the pyproject.toml file."""
     if "{{ cookiecutter.license }}" == "MIT License":
         license_classifier = "MIT License: License :: OSI Approved :: MIT License"
     elif "{{ cookiecutter.license }}" == "BSD License":
@@ -71,15 +72,16 @@ def add_pyproject_details():
     elif "{{ cookiecutter.license }}" == "Apache License 2.0":
         license_classifier = "Apache Software License 2.0: License :: OSI Approved :: Apache Software License"
     elif "{{ cookiecutter.license }}" == "GNU General Public License v3":
-        license_classifier = "GNU General Public License v3: License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+        license_classifier = (
+            "GNU General Public License v3: License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+        )
 
     project_license = "{{ cookiecutter.license }}"
     pyproject_path = Path(PROJECT_DIRECTORY) / "pyproject.toml"
-    author = subprocess.run(["git", "config", "--get", "user.name"], capture_output=True, text=True, check=True)
-    author = author.stdout.strip()
+    author = "{{ cookiecutter.author }}"
     email = subprocess.run(["git", "config", "--get", "user.email"], capture_output=True, text=True, check=True)
     email = email.stdout.strip()
-    author_line = "{name = \"" + author + "\", email = \"" + email + "\"},"  
+    author_line = '{name = "' + author + '", email = "' + email + '"},'
 
     with pyproject_path.open("r") as file:
         lines = file.readlines()
@@ -89,18 +91,19 @@ def add_pyproject_details():
             file.write(line)
             if line.strip().startswith("readme = "):
                 if project_license != "Not Open Source":
-                    file.write(f"license = \"{project_license}\"\n")
+                    file.write(f'license = "{project_license}"\n')
                 file.write("authors = [\n")
                 file.write(f"\t{author_line}\n")
                 file.write("]\n")
                 file.write("classifiers = [\n")
-                file.write(f"\t\"{license_classifier}\",\n")
-                file.write("\t\"Programming Language :: Python :: 3\",\n")
-                file.write("\t\"Natural Language :: English\",\n")
+                file.write(f'\t"{license_classifier}",\n')
+                file.write('\t"Programming Language :: Python :: 3",\n')
+                file.write('\t"Natural Language :: English",\n')
                 file.write("]\n")
 
             elif line.strip().startswith("requires-python"):
                 file.write("\n")
+
 
 if __name__ == "__main__":
     project_python_version = install_python()
