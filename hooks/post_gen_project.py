@@ -91,7 +91,7 @@ def add_pyproject_details() -> None:
             file.write(line)
             if line.strip().startswith("readme = "):
                 if project_license != "Not Open Source":
-                    file.write(f'license = "{project_license}"\n')
+                    file.write("license = {text = " + f'"{project_license}"' + "}\n")
                 file.write("authors = [\n")
                 file.write(f"\t{author_line}\n")
                 file.write("]\n")
