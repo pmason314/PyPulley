@@ -12,9 +12,11 @@ jobs:
       contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
       - name: Run script to bump hook versions
         run: bash PRE_COMMIT_BUMP_SCRIPT.sh
       - name: Commit hook version changes
@@ -23,4 +25,4 @@ jobs:
           commit_message: Bump pre-commit hook versions
           commit_options: "--signoff"
           commit_user_name: GitHub Actions Version Bot
-          commit_author: Peter Mason <pm3.141@gmail.com>
+          commit_author: Peter Mason <peter@petermason.me>
