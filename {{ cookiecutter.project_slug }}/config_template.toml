@@ -72,7 +72,7 @@ unfixable = [
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["D104", "F401"]
 {%- if cookiecutter.create_sphinx_docs == 'y' %}
-"docs/conf.py" = ["INP001"]
+"docs/*" = ["INP001"]
 {%- endif %}
 "tests/*" = ["ANN201", "INP001"]
 
