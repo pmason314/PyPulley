@@ -36,7 +36,11 @@ def install_python() -> None:
 
     if python_version == "latest":
         python_version = subprocess.run(
-            "uv python list | head -n 1 | awk '{print $1;}'", capture_output=True, text=True, shell=True, check=True
+            "uv python list | head -n 5 | grep -v 'rc' | head -n 1 | awk '{print $1;}'",
+            capture_output=True,
+            text=True,
+            shell=True,
+            check=True,
         )
         python_version = python_version.stdout.strip()
 
@@ -78,10 +82,10 @@ def add_pyproject_details() -> None:
 
     project_license = "{{ cookiecutter.license }}"
     pyproject_path = Path(PROJECT_DIRECTORY) / "pyproject.toml"
-    author = "{{ cookiecutter.author }}"
     email = subprocess.run(["git", "config", "--get", "user.email"], capture_output=True, text=True, check=True)
     email = email.stdout.strip()
-    author_line = '{name = "' + author + '", email = "' + email + '"},'
+    author = "{{ cookiecutter.author }}"
+    author_line = '{ name = "' + author + '", email = "' + email + '" },'
 
     with pyproject_path.open("r") as file:
         lines = file.readlines()
@@ -91,18 +95,20 @@ def add_pyproject_details() -> None:
             file.write(line)
             if line.strip().startswith("readme = "):
                 if project_license != "Not Open Source":
-                    file.write("license = {text = " + f'"{project_license}"' + "}\n")
+                    file.write("license = { text = " + f'"{project_license}"' + " }\n")
                 file.write("authors = [\n")
-                file.write(f"\t{author_line}\n")
+                file.write(f"    {author_line}\n")
                 file.write("]\n")
                 file.write("classifiers = [\n")
-                file.write(f'\t"{license_classifier}",\n')
-                file.write('\t"Programming Language :: Python :: 3",\n')
-                file.write('\t"Natural Language :: English",\n')
+                file.write(f'    "{license_classifier}",\n')
+                file.write('    "Programming Language :: Python :: 3",\n')
+                file.write('    "Natural Language :: English",\n')
                 file.write("]\n")
 
             elif line.strip().startswith("requires-python"):
                 file.write("\n")
+        file.write("\n[tool.uv]\n")
+        file.write("package = true\n")
 
 
 if __name__ == "__main__":
