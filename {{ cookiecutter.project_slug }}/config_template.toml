@@ -56,7 +56,6 @@ select = [
     "RUF",   # ruff-specific rules
 ]
 ignore = [
-    "ANN101", # Missing type annotations for `self` methods
     "D203",   # Class docstring is missing a blank line after (Alternative to D211)
     "D213",   # Docstring summary is not on the second line of the docstring (Alternative to D212)
     "G004",   # Logging statement uses f-string
