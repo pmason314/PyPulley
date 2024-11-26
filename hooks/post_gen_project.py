@@ -70,15 +70,13 @@ def remove_unused_resources() -> None:
 def add_pyproject_details() -> None:
     """Add project details to the pyproject.toml file."""
     if "{{ cookiecutter.license }}" == "MIT License":
-        license_classifier = "MIT License: License :: OSI Approved :: MIT License"
+        license_classifier = "License :: OSI Approved :: MIT License"
     elif "{{ cookiecutter.license }}" == "BSD License":
-        license_classifier = "BSD License: License :: OSI Approved :: BSD License"
+        license_classifier = "License :: OSI Approved :: BSD License"
     elif "{{ cookiecutter.license }}" == "Apache License 2.0":
-        license_classifier = "Apache Software License 2.0: License :: OSI Approved :: Apache Software License"
+        license_classifier = "License :: OSI Approved :: Apache Software License"
     elif "{{ cookiecutter.license }}" == "GNU General Public License v3":
-        license_classifier = (
-            "GNU General Public License v3: License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
-        )
+        license_classifier = "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
 
     project_license = "{{ cookiecutter.license }}"
     pyproject_path = Path(PROJECT_DIRECTORY) / "pyproject.toml"
