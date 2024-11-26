@@ -105,8 +105,6 @@ def add_pyproject_details() -> None:
 
             elif line.strip().startswith("requires-python"):
                 file.write("\n")
-        file.write("\n[tool.uv]\n")
-        file.write("package = true\n")
 
 
 if __name__ == "__main__":
