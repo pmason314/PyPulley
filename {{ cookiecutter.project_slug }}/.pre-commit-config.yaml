@@ -17,7 +17,7 @@ repos:
       - id: check-yaml
         name: Ensure YAML files are valid
   - repo: https://github.com/fredrikaverpil/creosote
-    rev: v3.2.0
+    rev: v4.0.0
     hooks:
       - id: creosote
         name: Identify unused dependencies with Creosote
@@ -27,13 +27,13 @@ repos:
           - --deps-file=pyproject.toml
           - --s=project.dependencies
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         name: Check for common misspellings in text files
         types_or: [python, rst, markdown]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.4
+    rev: v0.9.4
     hooks:
       - id: ruff
         name: Lint Python code with Ruff
